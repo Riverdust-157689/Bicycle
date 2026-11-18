@@ -1,0 +1,13 @@
+.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+.cache/
+output/
+runs/
+wandb/
+*.egg-info/
+build/
+dist/
+docs/pdf

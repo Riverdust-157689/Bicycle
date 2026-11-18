@@ -1,0 +1,183 @@
+{
+  "schema_version": 1,
+  "status": "rounded_convex_tire_adopted_loaded_riding_and_gpu_validation_pending",
+  "units": "SI",
+  "axes": {
+    "forward": "+x",
+    "left": "+y",
+    "up": "+z"
+  },
+  "geometry": {
+    "wheel_radius": 0.27,
+    "wheel_half_width": 0.018,
+    "wheelbase": 0.9,
+    "rear_axle": [
+      0,
+      0,
+      0.27
+    ],
+    "front_axle": [
+      0.9,
+      0,
+      0.27
+    ],
+    "bottom_bracket": [
+      0.4,
+      0,
+      0.34
+    ],
+    "crank_radius": 0.11,
+    "pedal_lateral_offset": 0.14,
+    "pedal_half_size": [
+      0.07,
+      0.045,
+      0.012
+    ],
+    "saddle_top": [
+      0.24,
+      0,
+      0.77
+    ],
+    "saddle_half_size": [
+      0.1,
+      0.065,
+      0.025
+    ],
+    "grip_centers": [
+      [
+        0.69,
+        0.22,
+        1.02
+      ],
+      [
+        0.69,
+        -0.22,
+        1.02
+      ]
+    ],
+    "grip_radius": 0.014,
+    "head_angle_from_horizontal_deg": 78.63606586476637,
+    "trail": 0.04,
+    "steer_limit_rad": 0.35,
+    "crank_arm_lateral_offset": 0.075,
+    "pedal_spindle_length": 0.11,
+    "head_tube_lower_height": 0.6,
+    "head_tube_upper_height": 0.88,
+    "stem_clamp_height": 1.02,
+    "grip_length": 0.14,
+    "handlebar_sweep_back": 0.045,
+    "handlebar_mount_mode": "direct",
+    "tire_profile": {
+      "type": "rounded_convex",
+      "circumferential_samples": 192,
+      "crown_samples": 24
+    }
+  },
+  "mass_targets_kg": {
+    "frame_including_saddle": 5.5,
+    "steering_assembly_including_handlebar": 1.0,
+    "front_wheel": 0.9,
+    "rear_wheel": 0.9,
+    "crank_assembly": 0.4,
+    "each_pedal": 0.15
+  },
+  "transmission": {
+    "rear_wheel_revolutions_per_crank_revolution": 2.0,
+    "model": "ideal_bilateral_joint_coupling_no_freewheel",
+    "powered_rear_wheel_in_riding_mode": false
+  },
+  "simulation_initial": {
+    "timestep_s": 0.002,
+    "control_decimation": 10,
+    "integrator": "implicitfast",
+    "contact_condim": 3,
+    "sliding_friction_initial": 0.8,
+    "notes": "Starting values only; audit floor/pair overrides and step-size sensitivity before acceptance."
+  },
+  "rider_reference": {
+    "pelvis_height_above_saddle": 0.17,
+    "waist_pitch_rad": 0.45,
+    "hand_initialization": {
+      "mode": "palm_down_light_touch",
+      "palm_site_x_m": 0.1,
+      "palm_site_y_abs_m": 0.01594,
+      "clearance_m": 0.0005,
+      "orientation_weight_m": 0.15,
+      "notes": "Palm site calibrated against compiled mesh-to-grip distance; target near-touch without preload."
+    }
+  },
+  "contact_parameters": {
+    "solref": [
+      0.02,
+      1.0
+    ],
+    "solimp": [
+      0.9,
+      0.95,
+      0.001,
+      0.5,
+      2.0
+    ],
+    "default": {
+      "friction": [
+        0.5,
+        0,
+        0
+      ],
+      "priority": 0,
+      "condim": 3
+    },
+    "ground": {
+      "friction": [
+        0.8,
+        0,
+        0
+      ],
+      "priority": 0,
+      "condim": 3
+    },
+    "tire": {
+      "friction": [
+        0.8,
+        0,
+        0
+      ],
+      "priority": 1,
+      "condim": 3
+    },
+    "grip": {
+      "friction": [
+        0.8,
+        0,
+        0
+      ],
+      "priority": 2,
+      "condim": 3
+    },
+    "saddle": {
+      "friction": [
+        0.6,
+        0,
+        0
+      ],
+      "priority": 2,
+      "condim": 3
+    },
+    "pedal": {
+      "friction": [
+        0.6,
+        0,
+        0
+      ],
+      "priority": 2,
+      "condim": 3
+    },
+    "notes": "Provisional uncalibrated Coulomb parameters. condim=3: no torsional or rolling friction."
+  },
+  "bearing_parameters": {
+    "default_damping": 0.01,
+    "steer_damping": 0.05,
+    "frictionloss": 0.0,
+    "armature": 0.001
+  }
+}

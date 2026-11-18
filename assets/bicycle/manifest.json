@@ -1,0 +1,9 @@
+{
+  "config_sha256": "dd9ef648ce897b276eb82bb66526f5c8daa4e7388317b4a5451a5120d0f4bb0a",
+  "status": "generated_prototype_requires_physical_validation",
+  "notes": [
+    "Fixed scene is a diagnostic rig, not successful riding.",
+    "Tire contact profile is configured in geometry.tire_profile; inertias held fixed during geometry adoption.",
+    "Bilateral ideal transmission without a freewheel."
+  ]
+}

@@ -1,0 +1,21 @@
+[build-system]
+requires = ["hatchling>=1.27,<2"]
+build-backend = "hatchling.build"
+
+[project]
+name = "bicycle-sim"
+version = "0.1.0"
+description = "G1 and Dex3 bicycle simulation and differentiable world model research"
+readme = "README.md"
+requires-python = ">=3.12,<3.13"
+dependencies = ["mjlab==1.6.1"]
+
+[dependency-groups]
+dev = ["pytest>=8,<10", "ruff>=0.11,<1"]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/bicycle_sim"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"
