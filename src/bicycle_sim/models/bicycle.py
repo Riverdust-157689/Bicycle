@@ -311,16 +311,43 @@ def build_bicycle(config: dict, *, fixed_frame: bool = False) -> ET.Element:
         ("steering", "front_wheel"),
     ]:
         sub(contact, "exclude", body1=a, body2=b)
-    equality = sub(root, "equality")
     ratio = drive["rear_wheel_revolutions_per_crank_revolution"]
-    sub(
-        equality,
-        "joint",
-        name="chain_coupling",
-        joint1="rear_wheel_spin",
-        joint2="crank_spin",
-        polycoef=numbers([0, ratio, 0, 0, 0]),
-    )
+    if ratio <= 0:
+        raise ValueError("Transmission ratio must be positive")
+    if drive["model"] == "one_way_viscous_freewheel":
+        # Slip = G * crank_velocity - rear_velocity. A negative tendon force
+        # drives the wheel and reacts on the crank. It can only remove energy:
+        # P = -min(k * max(slip, 0), limit) * slip <= 0.
+        # Native MuJoCo terms: no Python callbacks or mutable equality switches.
+        kv = drive["freewheel_damping_Nm_s_per_rad"]
+        limit = drive["freewheel_max_rear_torque_Nm"]
+        if kv <= 0 or limit <= 0:
+            raise ValueError("Freewheel damping and torque limit must be positive")
+        tendon = sub(sub(root, "tendon"), "fixed", name="chain_slip")
+        sub(tendon, "joint", joint="crank_spin", coef=ratio)
+        sub(tendon, "joint", joint="rear_wheel_spin", coef=-1)
+        sub(
+            sub(root, "actuator"),
+            "general",
+            name="freewheel",
+            tendon="chain_slip",
+            gainprm="0",
+            biastype="affine",
+            biasprm=numbers([0, 0, -kv]),
+            forcelimited="true",
+            forcerange=numbers([-limit, 0]),
+        )
+    elif drive["model"] == "ideal_bilateral_joint_coupling_no_freewheel":
+        sub(
+            sub(root, "equality"),
+            "joint",
+            name="chain_coupling",
+            joint1="rear_wheel_spin",
+            joint2="crank_spin",
+            polycoef=numbers([0, ratio, 0, 0, 0]),
+        )
+    else:
+        raise ValueError("Unknown transmission model")
     custom = sub(root, "custom")
     sub(custom, "text", name="bicycle_geometry", data=json.dumps(g))
     sensors = sub(root, "sensor")
@@ -329,7 +356,7 @@ def build_bicycle(config: dict, *, fixed_frame: bool = False) -> ET.Element:
         sub(sensors, "jointvel", name=f"{name}_velocity", joint=name)
     sub(sensors, "gyro", name="bike_gyro", site="bike_imu")
     sub(sensors, "accelerometer", name="bike_acceleration", site="bike_imu")
-    # No actuators: subsequent rider forces or diagnostic generalized forces drive it.
+    # The freewheel is represented by an unpowered actuator (gain=0).
     return root
 
 
@@ -352,7 +379,7 @@ def generate(config_path: Path, output: Path) -> list[Path]:
                 "notes": [
                     "Fixed scene is a diagnostic rig, not successful riding.",
                     "Tire contact profile is configured in geometry.tire_profile; inertias held fixed during geometry adoption.",
-                    "Bilateral ideal transmission without a freewheel.",
+                    f"Transmission: {config['transmission']['model']}.",
                 ],
             },
             indent=2,

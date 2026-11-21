@@ -59,7 +59,11 @@ def combined_tree(config, robot_path, scene_dir):
             size="0.008",
         )
     root.find("worldbody").append(pelvis)
-    root.append(copy.deepcopy(robot.find("actuator")))
+    actuator = root.find("actuator")
+    if actuator is None:
+        actuator = sub(root, "actuator")
+    for child in robot.find("actuator"):
+        actuator.append(copy.deepcopy(child))
     for sensor in robot.find("sensor"):
         root.find("sensor").append(copy.deepcopy(sensor))
     return root
@@ -274,7 +278,10 @@ def fit(
     # A saved pose keyframe is not a constraint or an actuator reference.
     keys = sub(root, "keyframe")
     # Match the position-servo reference to the initial joints, not all-zero controls.
-    initial_ctrl = states[0][m.jnt_qposadr[m.actuator_trnid[:, 0]]]
+    initial_ctrl = np.zeros(m.nu)
+    for a in range(m.nu):
+        if m.actuator_trntype[a] == mujoco.mjtTrn.mjTRN_JOINT:
+            initial_ctrl[a] = states[0][m.jnt_qposadr[m.actuator_trnid[a, 0]]]
     sub(keys, "key", name="mounted_kinematic", qpos=numbers(states[0]), ctrl=numbers(initial_ctrl))
     ET.indent(root, space="  ")
     ET.ElementTree(root).write(path, encoding="unicode")

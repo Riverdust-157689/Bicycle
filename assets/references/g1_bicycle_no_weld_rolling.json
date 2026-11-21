@@ -1,0 +1,726 @@
+{
+  "backend": "mjlab/MuJoCo-Warp",
+  "passed": true,
+  "model_fingerprint": "9a721c55a02a4f6f62a116b872af071be3414e74241029fc8d1b9d4927bd857c",
+  "phase_reference_sha256": "2841e704ea70a69656f6e78e85e42cd7859d21fd9a0f50f49ad6ea4ca43eb174",
+  "config": {
+    "experiment": "B",
+    "seed": 42,
+    "num_envs": 128,
+    "episode_seconds": 20.0,
+    "initial_speed_mps": 2.0,
+    "initial_roll_rad": 0.02,
+    "control_decimation": 10,
+    "arm_offset_limit_rad": 0.5,
+    "arm_target_rate_rad_s": 4.0,
+    "steering_reference_limit_rad": 0.35,
+    "controller_roll_gain": 3.0,
+    "controller_roll_rate_gain": 0.7,
+    "crank_speed_rad_s": 3.7037037037,
+    "leg_velocity_feedforward": false,
+    "crank_servo_kv": 2.0,
+    "max_crank_torque_Nm": 8.0,
+    "fall_angle_rad": 0.65,
+    "nconmax": 192,
+    "njmax": 1536,
+    "hidden_dims": [
+      256,
+      256
+    ],
+    "learning_rate": 0.0003,
+    "ppo_rollouts": 64,
+    "ppo_raw_gaussian": true,
+    "sac_replay_transitions": 262144,
+    "sac_batch_size": 1024,
+    "sac_learning_starts_transitions": 8192,
+    "tire_collision_model": "ellipsoid",
+    "hand_control_enabled": true,
+    "grasp_reference_path": "assets/references/dex3_handlebar_grasp.json",
+    "hand_kp": 5.0,
+    "hand_kv": 0.15,
+    "hand_nominal_closure": 0.9,
+    "hand_closure_action_scale": 0.1,
+    "hand_closure_rate_per_s": 0.5,
+    "finger_force_scale_N": 50.0,
+    "finger_contact_reward_weight": 0.1,
+    "whole_body_control": true,
+    "saddle_raise_m": 0.01712795129573247,
+    "whole_body_reference_path": "assets/references/g1_bicycle_no_weld_rolling.json",
+    "waist_offset_limit_rad": [
+      0.35,
+      0.25,
+      0.35
+    ],
+    "waist_target_rate_rad_s": 2.0,
+    "rider_fall_angle_rad": 1.0,
+    "rider_separation_limit_m": 0.4,
+    "pedaling_reward_weight": 0.1,
+    "crank_assist_full_until_transitions": 16777216,
+    "crank_assist_zero_after_transitions": 25165824,
+    "contact_force_scale_N": 350.0,
+    "initial_foot_clearance_m": 0.0002,
+    "pedal_reference_pitch_rad": 0.08,
+    "leg_control_mode": "direct_position",
+    "observe_pedal_joints": true,
+    "crank_assistance_override": 0.0,
+    "wheel_ground_rolling_friction_m": 0.00405,
+    "epa_horizon_capacity": 128
+  },
+  "diagnostics": {
+    "support_fraction": 1.0,
+    "both_hands_fraction": 1.0,
+    "max_penetration_m": 0.0005365926772356033,
+    "max_pelvis_tilt_rad": 0.020417868851081093,
+    "max_pelvis_shift_m": 0.0012393065287239545,
+    "max_pelvis_speed_mps": 0.0005435339988069502,
+    "max_pelvis_angular_speed_rad_s": 0.008232596872729045,
+    "max_penetration_by_group_m": {
+      "seat": 0.0001475811004638672,
+      "left_foot": 0.00014747378008905798,
+      "right_foot": 0.0005365926772356033,
+      "hands": 0.00043113064020872116
+    },
+    "max_leg_ik_position_error_m": 8.054218509383415e-14,
+    "max_leg_ik_angle_error_rad": 6.932359874826748e-13,
+    "leg_reference_fit": {
+      "max_position_error_m": 1.7364704265309942e-10,
+      "max_angle_error_rad": 2.4405106751758413e-09,
+      "closure_error_rad": 1.9878975132670007e-09
+    }
+  },
+  "source_run": "output/phase2/whole_body_rolling_init_gpu",
+  "source_sha256": {
+    "src/bicycle_sim/__init__.py": "9982a3af03059a9e6da7a59398d27c9cb08d8c303cbb1cd41176749ce4243282",
+    "src/bicycle_sim/cli/__init__.py": "d5fdac1f79abd5d126703cbea986e2fe65ac5bf43ad38e518fd7cebec212e592",
+    "src/bicycle_sim/cli/analyze_rider_feet.py": "4caad8d01944025a320d7d288b199d5497058a025b640c17722acdd5e35c00d6",
+    "src/bicycle_sim/cli/analyze_rider_probe.py": "9ad28e5d9aa3a98ad1d153fc3d7b53d6d39b3510118bd8c1fb8dec107ee0eaeb",
+    "src/bicycle_sim/cli/audit_balance.py": "0eab0732871727ec6100d96514c2ad1704a4f5ba9304527ed02a924835c85bb7",
+    "src/bicycle_sim/cli/audit_coasting.py": "2243ae8bc9fb87d116873eee3fe803d63208bb189e44c2bd3a818e54bd19772b",
+    "src/bicycle_sim/cli/audit_controller_limits.py": "6a0ce99baa5169945c7c2dda0ea754f6d96224d4c4e66f7e1bcb7f61ef202914",
+    "src/bicycle_sim/cli/audit_freewheel.py": "aff888e3bb476d1af2cb16a9d156c597cd9b30e38bd4b294440acb540826d39a",
+    "src/bicycle_sim/cli/audit_physics.py": "c0a22217622b261f198670add1fae1b19ba058e229f12f38bc89983f147dd572",
+    "src/bicycle_sim/cli/audit_rider_backend.py": "5107eda4b53daf6a75b54f1084f97f3e37501b434b9dfaca9ec331ab17e96731",
+    "src/bicycle_sim/cli/audit_rider_following.py": "eb34e552f9c9cb621f902d6dfe07e9f8bee20e301869743ef5877a98b5a777a9",
+    "src/bicycle_sim/cli/audit_saddle_contact.py": "a340a664f6408cc4a84577c7fc5b04ea2063b0bac1c4643ab886d4479ffb94a0",
+    "src/bicycle_sim/cli/benchmark_tires.py": "59bdbf053547e4cb4deac564de96a374cf49f5f91d4a7f5d7032f4a048f3008c",
+    "src/bicycle_sim/cli/check_front_clearance.py": "b829f2bea1a3803d24cc07a3b9468dbb29983e22c5e4c18b6e82c87a3fcd594c",
+    "src/bicycle_sim/cli/check_rider_steering.py": "ff14a495c6637b5d01ad86e93d0bcb22dce0ef47b18e7c549096be7e831700c4",
+    "src/bicycle_sim/cli/compare_rider_controls.py": "3bd7ddb81e50fea4337a69a22bafb3885ffec8a4c152c6fe664599e30d16553b",
+    "src/bicycle_sim/cli/diagnose_rider.py": "2d2ab94d96f1e9cd764ec80dcd1c6893d831488ce20a7b4a7424bd7a456928bd",
+    "src/bicycle_sim/cli/evaluate_bicycle.py": "7c5380b74ba527c2e0cf596ef42b9d1fa5de2e7f3f26280434d236d9884fbb70",
+    "src/bicycle_sim/cli/generate_bicycle.py": "d3f8891aabf7bfd6dbf1b77dabc56b1aa38bbab2c9dc0fad2cfbe8ef21a35344",
+    "src/bicycle_sim/cli/inspect_platform.py": "490cd34f5ab35765f1121af4979847424a5738a7e3d72a3c6b604cb04b7b5604",
+    "src/bicycle_sim/cli/play_bicycle.py": "d6913015a60488941abd530c13daebc27975d08c91527a96f163ad1bb7d10c90",
+    "src/bicycle_sim/cli/probe_hand_grasp.py": "31c7bcd90c40182ab0b633f60bb772160f012c8b516271837bbad1f243a97d54",
+    "src/bicycle_sim/cli/probe_rider_gpu.py": "a102ef58c6971eba02eabaf30924a6946b249698be054268f8294b17a5e7c917",
+    "src/bicycle_sim/cli/render_rider_probe.py": "261ec12796f2f9bfe122c5e6e7640fac18f5dd7d847b8921d425668da10e8b27",
+    "src/bicycle_sim/cli/render_three_views.py": "7470f0d5a446f7deda5c6bed64c4054c77d2ba3e84f3f0bc88cec2071fa80cc8",
+    "src/bicycle_sim/cli/settle_whole_body.py": "0488eddeea1c90655b0a7403ff15850ea1cf65b4372f351ebc0622525bce328f",
+    "src/bicycle_sim/cli/train_bicycle.py": "6df7aad3a5f2f8b41128f7ad996e948ffe231794ea218a90f4fd843925213d19",
+    "src/bicycle_sim/cli/train_rider.py": "54a6e041f4c8543f47c1000aa6ebf82619d95c65d6cf6bfec7ae18bfaa912fab",
+    "src/bicycle_sim/control/__init__.py": "ebc011b4614a7ea765177b84b89b69a03649a8197036be37af557dce664767ef",
+    "src/bicycle_sim/control/hand_contact.py": "c8223f7f8179580ce847eb0f9717d0c101e8d8db2bdbf9862a01f9474688401b",
+    "src/bicycle_sim/control/hand_synergy.py": "9c634c48dd98f421ace8f47018f11b8f8150de810ac2919ba64fc5172d8e553c",
+    "src/bicycle_sim/control/rider_fit.py": "1842852728674148511d156e5bbb9317d1698ea68286a534c87cbd7042b1ba56",
+    "src/bicycle_sim/control/seated_leg_reference.py": "7344852b09d6c3aa2c47bd7b6d09faa25cd1dbd10a7e94f45bd490e2701accaf",
+    "src/bicycle_sim/models/__init__.py": "99b8772dc004fc1291f2ea913b6f8436c8f269366f762ee582c3cc581a1a3a5c",
+    "src/bicycle_sim/models/bicycle.py": "c4136171a6543b71bd58e6c9a4296ed622b07778bb7643de663876967cb92311",
+    "src/bicycle_sim/models/tire.py": "35b48b1ed7a7a513891018867c73d978d8edf3aed9e60d9061c863a2d4de05fb",
+    "src/bicycle_sim/rl/__init__.py": "629aa6d0aa60d2740253b2b1c4c5b3017afd69620ca52070a9966e492ce9d5c6",
+    "src/bicycle_sim/rl/bicycle_env.py": "d5f5221bbd3fd4ae9c45605907facbe91bbd59ac53dc0e5ddd6a56c137e00ac4",
+    "src/bicycle_sim/rl/cuda_context.py": "c08a6d73c671be43e3c985919f555dbf89ae0535647a040c7ff8ed5e8bc13a2b",
+    "src/bicycle_sim/rl/physics_diagnostics.py": "dcdb4db71ba9d7843ffb4ed68c027285ecbda3a9b1a9d73cf49741f24865241e",
+    "src/bicycle_sim/rl/rider_gpu_env.py": "da091f3c168713fdceafe381b2e3a4be323460d8af3fe71190fddb4b0b80e517",
+    "src/bicycle_sim/rl/rider_model.py": "a8c034a7f36521abe3979d782b41f58f5991fadf825fff27616f397311e4ea74",
+    "src/bicycle_sim/rl/rider_recording.py": "62780c526553f21b14302b4de56db992e702f26adbe0e33f7893d6dfac0d0656",
+    "src/bicycle_sim/rl/skrl_agents.py": "e1fe67c901673c7627909459326670228c70e0b4cd5c21551daf7ef34aa247c7",
+    "src/bicycle_sim/rl/vector_env.py": "ec89dfa7038bb366c1c5e049e1622eed0fba019b90ca59fa31e512248b4bfcba",
+    "src/bicycle_sim/rl/warp_capacity.py": "a0eb4f9c181cb9cf0b27bebceb01e20494dccc53feb4d8f8395fc3174a46ddff",
+    "src/bicycle_sim/rl/whole_body.py": "996f76ce33890eb3f2676cafb4c717c4d4798dbb02a982ea04cc28681a9928ca",
+    "configs/rl/bicycle_b_whole_body_direct_noassist_rolling_sac.json": "77b76b9a0ad054f5bea4745812d62cbd4751f30bafdc84b58f0a6e63e1c2658b",
+    "output/phase1/rider_kinematic_reference.npz": "2841e704ea70a69656f6e78e85e42cd7859d21fd9a0f50f49ad6ea4ca43eb174",
+    "assets/references/dex3_handlebar_grasp.json": "0a2cdf3831aab8d40cafdba12bba121f27552efff2cca96ae8c80c11a5855cca",
+    "assets/scenes/rider_fit_diagnostic.xml": "328aac5a53d0542f2ac8513d6c03f8adcc0003ce31bf1d86c7266bb4edd838e1",
+    "uv.lock": "f652a84b549c9600eb892731c4e71d2d217c4fe03814aa00e9c536d0311f66e4"
+  },
+  "initialization_only_assistance": [
+    "fixed bicycle frame",
+    "temporary crank position hold"
+  ],
+  "initialization_leg_controller": "IK of actual pelvis and pedal poses, preparation only",
+  "initial_leg_ik": {
+    "max_position_error_m": 5.125396027766235e-16,
+    "max_angle_error_rad": 5.722134301463051e-16
+  },
+  "joint_qpos": {
+    "bike_root": [
+      0.0,
+      0.0,
+      0.0,
+      1.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "rear_wheel_spin": [
+      0.019593583419919014
+    ],
+    "steer": [
+      0.0035409489646553993
+    ],
+    "front_wheel_spin": [
+      -4.123869075556286e-06
+    ],
+    "crank_spin": [
+      0.1774899959564209
+    ],
+    "left_pedal_spin": [
+      -0.09921237826347351
+    ],
+    "right_pedal_spin": [
+      -0.08486965298652649
+    ],
+    "floating_base_joint": [
+      0.2404516041278839,
+      -0.00091755815083161,
+      0.9389670491218567,
+      0.999946653842926,
+      0.002405698411166668,
+      0.009924445301294327,
+      0.0015751998871564865
+    ],
+    "left_hip_pitch_joint": [
+      -1.1101855039596558
+    ],
+    "left_hip_roll_joint": [
+      0.006224262528121471
+    ],
+    "left_hip_yaw_joint": [
+      -0.04388834908604622
+    ],
+    "left_knee_joint": [
+      1.286507248878479
+    ],
+    "left_ankle_pitch_joint": [
+      -0.11811256408691406
+    ],
+    "left_ankle_roll_joint": [
+      -0.047659918665885925
+    ],
+    "right_hip_pitch_joint": [
+      -0.8696086406707764
+    ],
+    "right_hip_roll_joint": [
+      -0.0269163865596056
+    ],
+    "right_hip_yaw_joint": [
+      0.04752947762608528
+    ],
+    "right_knee_joint": [
+      1.7490346431732178
+    ],
+    "right_ankle_pitch_joint": [
+      -0.8066237568855286
+    ],
+    "right_ankle_roll_joint": [
+      0.04945220798254013
+    ],
+    "waist_yaw_joint": [
+      -0.0004123173712287098
+    ],
+    "waist_roll_joint": [
+      -0.002739047398790717
+    ],
+    "waist_pitch_joint": [
+      0.4429042935371399
+    ],
+    "left_shoulder_pitch_joint": [
+      -0.5944125652313232
+    ],
+    "left_shoulder_roll_joint": [
+      0.672088623046875
+    ],
+    "left_shoulder_yaw_joint": [
+      -0.15109680593013763
+    ],
+    "left_elbow_joint": [
+      0.038640331476926804
+    ],
+    "left_wrist_roll_joint": [
+      0.9142745733261108
+    ],
+    "left_wrist_pitch_joint": [
+      0.2526516914367676
+    ],
+    "left_wrist_yaw_joint": [
+      0.018669191747903824
+    ],
+    "left_hand_thumb_0_joint": [
+      0.0010529373539611697
+    ],
+    "left_hand_thumb_1_joint": [
+      0.596775472164154
+    ],
+    "left_hand_thumb_2_joint": [
+      1.0734469890594482
+    ],
+    "left_hand_middle_0_joint": [
+      -1.244107723236084
+    ],
+    "left_hand_middle_1_joint": [
+      -1.4341316223144531
+    ],
+    "left_hand_index_0_joint": [
+      -1.2415127754211426
+    ],
+    "left_hand_index_1_joint": [
+      -1.434132695198059
+    ],
+    "right_shoulder_pitch_joint": [
+      -0.5957770943641663
+    ],
+    "right_shoulder_roll_joint": [
+      -0.6741296052932739
+    ],
+    "right_shoulder_yaw_joint": [
+      0.15050053596496582
+    ],
+    "right_elbow_joint": [
+      0.03724848851561546
+    ],
+    "right_wrist_roll_joint": [
+      -0.9157314896583557
+    ],
+    "right_wrist_pitch_joint": [
+      0.2523808181285858
+    ],
+    "right_wrist_yaw_joint": [
+      -0.019288573414087296
+    ],
+    "right_hand_thumb_0_joint": [
+      -0.0005163684254512191
+    ],
+    "right_hand_thumb_1_joint": [
+      -0.5950281620025635
+    ],
+    "right_hand_thumb_2_joint": [
+      -1.07344651222229
+    ],
+    "right_hand_middle_0_joint": [
+      1.2454291582107544
+    ],
+    "right_hand_middle_1_joint": [
+      1.4341328144073486
+    ],
+    "right_hand_index_0_joint": [
+      1.2456481456756592
+    ],
+    "right_hand_index_1_joint": [
+      1.4341332912445068
+    ]
+  },
+  "control_targets": {
+    "freewheel": 0.0,
+    "left_hip_pitch_joint": -1.1115292310714722,
+    "left_hip_roll_joint": 0.0061875698156654835,
+    "left_hip_yaw_joint": -0.04277819022536278,
+    "left_knee_joint": 1.2868707180023193,
+    "left_ankle_pitch_joint": -0.11535335332155228,
+    "left_ankle_roll_joint": -0.04766028746962547,
+    "right_hip_pitch_joint": -0.881264865398407,
+    "right_hip_roll_joint": -0.026852600276470184,
+    "right_hip_yaw_joint": 0.04699280858039856,
+    "right_knee_joint": 1.744761347770691,
+    "right_ankle_pitch_joint": -0.8038380146026611,
+    "right_ankle_roll_joint": 0.04942919313907623,
+    "waist_yaw_joint": 0.0,
+    "waist_roll_joint": 0.0,
+    "waist_pitch_joint": 0.44999998807907104,
+    "left_shoulder_pitch_joint": -0.5873308777809143,
+    "left_shoulder_roll_joint": 0.6718066930770874,
+    "left_shoulder_yaw_joint": -0.15721657872200012,
+    "left_elbow_joint": 0.046099722385406494,
+    "left_wrist_roll_joint": 0.9133636355400085,
+    "left_wrist_pitch_joint": 0.252005010843277,
+    "left_wrist_yaw_joint": 0.014474915340542793,
+    "left_hand_thumb_0_joint": 0.0,
+    "left_hand_thumb_1_joint": 0.8999999761581421,
+    "left_hand_thumb_2_joint": 1.0800000429153442,
+    "left_hand_middle_0_joint": -1.350000023841858,
+    "left_hand_middle_1_joint": -1.440000057220459,
+    "left_hand_index_0_joint": -1.350000023841858,
+    "left_hand_index_1_joint": -1.440000057220459,
+    "right_shoulder_pitch_joint": -0.5873242616653442,
+    "right_shoulder_roll_joint": -0.6718380451202393,
+    "right_shoulder_yaw_joint": 0.15719933807849884,
+    "right_elbow_joint": 0.0461261160671711,
+    "right_wrist_roll_joint": -0.9133292436599731,
+    "right_wrist_pitch_joint": 0.25196945667266846,
+    "right_wrist_yaw_joint": -0.014495322480797768,
+    "right_hand_thumb_0_joint": 0.0,
+    "right_hand_thumb_1_joint": -0.8999999761581421,
+    "right_hand_thumb_2_joint": -1.0800000429153442,
+    "right_hand_index_0_joint": 1.350000023841858,
+    "right_hand_index_1_joint": 1.440000057220459,
+    "right_hand_middle_0_joint": 1.350000023841858,
+    "right_hand_middle_1_joint": 1.440000057220459,
+    "crank_drive": 0.0
+  },
+  "leg_reference": [
+    [
+      -1.1706717427161009,
+      0.003966930852278543,
+      -0.04495467733042172,
+      1.3694953536492676,
+      -0.13884835079877006,
+      -0.04957402677811118,
+      -0.839394439467018,
+      -0.02785695100622834,
+      0.04409709437025757,
+      1.6640530228624728,
+      -0.7650396371518882,
+      0.04745907377040557
+    ],
+    [
+      -1.0827169886750465,
+      0.007208936528966541,
+      -0.04175321393022474,
+      1.2491131055323945,
+      -0.1064773791751424,
+      -0.04680661875307382,
+      -0.903021184682939,
+      -0.02623799958017826,
+      0.048461445871166034,
+      1.7813902816456648,
+      -0.8187665870214376,
+      0.05041470135919657
+    ],
+    [
+      -0.9932498583501772,
+      0.01012440226644917,
+      -0.03873511485040386,
+      1.1432445060950598,
+      -0.09011742210063987,
+      -0.04446336802684148,
+      -0.979650083872085,
+      -0.023533224524752,
+      0.053233791087214724,
+      1.8831603038255909,
+      -0.8438929393620188,
+      0.05351600001435564
+    ],
+    [
+      -0.908653427467568,
+      0.012589693869778816,
+      -0.03604559276681471,
+      1.0602258341795625,
+      -0.09172275639253386,
+      -0.04260027360541678,
+      -1.0672484278951593,
+      -0.019571469799421135,
+      0.057947306146552156,
+      1.9619249668624057,
+      -0.8349947721557777,
+      0.05648169313460144
+    ],
+    [
+      -0.8349906382667015,
+      0.014554302352234172,
+      -0.03382626013206284,
+      1.008402459614268,
+      -0.1135790572681722,
+      -0.04123773775281308,
+      -1.1603204683801494,
+      -0.014531566270412738,
+      0.061964567216238144,
+      2.0106110468514906,
+      -0.7904876186106755,
+      0.05896947876129099
+    ],
+    [
+      -0.7771583556571281,
+      0.016030394948887333,
+      -0.0322010485393066,
+      0.9941395784282777,
+      -0.157158904426929,
+      -0.040379729386235116,
+      -1.24915165543005,
+      -0.009115789965887822,
+      0.06467836374642025,
+      2.0240459703682108,
+      -0.7149329658193613,
+      0.06064506546816969
+    ],
+    [
+      -0.7378353519905888,
+      0.017085366500616768,
+      -0.03125444008232141,
+      1.019381729247913,
+      -0.22173234431696093,
+      -0.04002691328780531,
+      -1.3216042655314195,
+      -0.004412158313405385,
+      0.065788447320426,
+      2.000666583884796,
+      -0.6189501741790033,
+      0.06126525108479993
+    ],
+    [
+      -0.7171564739561419,
+      0.017818846470447222,
+      -0.031021854228252196,
+      1.0807429939160114,
+      -0.3037821504441765,
+      -0.040183280111552686,
+      -1.367287862378633,
+      -0.001415423569081025,
+      0.06539660640278075,
+      1.9431377976030118,
+      -0.5156398164966515,
+      0.06074039222232508
+    ],
+    [
+      -0.7135466238899744,
+      0.018323835189666494,
+      -0.03150473792630192,
+      1.1710411094613633,
+      -0.39770354818387116,
+      -0.040857099166524996,
+      -1.3810730319147269,
+      -0.0005844419913295441,
+      0.06383074503557651,
+      1.8573309769522015,
+      -0.4160229399358379,
+      0.05915961223711875
+    ],
+    [
+      -0.7250117799818916,
+      0.01865068932275679,
+      -0.03269618143184993,
+      1.2817842365396552,
+      -0.4969998723354698,
+      -0.042057861769506,
+      -1.3635121688562732,
+      -0.0017733822221970249,
+      0.06141987244830566,
+      1.750545647531226,
+      -0.3268384572036667,
+      0.056767932745088234
+    ],
+    [
+      -0.7500390651233929,
+      0.01878490435567433,
+      -0.03459542547655328,
+      1.404825047471159,
+      -0.5950364508663831,
+      -0.04378966807012108,
+      -1.3189698819072109,
+      -0.004461541631666958,
+      0.05840801399950493,
+      1.6301685117309006,
+      -0.25108446456930994,
+      0.053895627673180575
+    ],
+    [
+      -0.7879130500724993,
+      0.018634593389473184,
+      -0.03720210957717826,
+      1.5328169664671423,
+      -0.6851799962540001,
+      -0.04603966641425182,
+      -1.253524569274113,
+      -0.008026872299613845,
+      0.05497760353034683,
+      1.503182035711659,
+      -0.1896389397353453,
+      0.050871921452676896
+    ],
+    [
+      -0.8386201952981052,
+      0.018023682376422198,
+      -0.04048905804329843,
+      1.6589561503754306,
+      -0.7606350361473682,
+      -0.04875979388356088,
+      -1.1736866477043086,
+      -0.011919434100465899,
+      0.05129192685663687,
+      1.3763066791228387,
+      -0.14269161860373963,
+      0.04796346854475279
+    ],
+    [
+      -0.902442250746902,
+      0.016700156271225137,
+      -0.044353033756829585,
+      1.7764960382564805,
+      -0.8143637149213775,
+      -0.051842181952024134,
+      -1.0859245753747901,
+      -0.015725615427444595,
+      0.04752014872418165,
+      1.2564411020429682,
+      -0.11066062279978514,
+      0.04535268685876492
+    ],
+    [
+      -0.9791550310191858,
+      0.014387797399861624,
+      -0.04854942389848721,
+      1.8783549483494604,
+      -0.8394944193530227,
+      -0.05509432959751151,
+      -0.9966345615773995,
+      -0.019167205527536754,
+      0.04384768565222968,
+      1.1511100030156565,
+      -0.09466995837370183,
+      0.043145889637027285
+    ],
+    [
+      -1.0667006898224207,
+      0.010920196016032226,
+      -0.05264313664914289,
+      1.957111704242709,
+      -0.8306491462736684,
+      -0.05822923533724143,
+      -0.9121656948308534,
+      -0.02207851127693623,
+      0.04047786539312708,
+      1.0685658075548634,
+      -0.0966243042524042,
+      0.04139436930109306
+    ],
+    [
+      -1.159572281471295,
+      0.006454549200426121,
+      -0.05604897204544321,
+      2.0057200828275046,
+      -0.7862839946321216,
+      -0.0608907535224047,
+      -0.8385285865876982,
+      -0.024387056783143634,
+      0.03762124467962583,
+      1.0170328905993467,
+      -0.11874260745193602,
+      0.04011668520079982
+    ],
+    [
+      -1.2480799541118426,
+      0.0016305927847129875,
+      -0.05822332838130912,
+      2.019039004030905,
+      -0.7109649797350934,
+      -0.06272125221033928,
+      -0.7805716296438154,
+      -0.026103496292067013,
+      0.035466149619899516,
+      1.002765129127376,
+      -0.1624373525010472,
+      0.03931692944342959
+    ],
+    [
+      -1.3201499529768448,
+      -0.0025595044128632278,
+      -0.0589175796255652,
+      1.9955274248376487,
+      -0.6152617652772145,
+      -0.06344949134819164,
+      -0.7409644514457067,
+      -0.02730802786597225,
+      0.03414002417944983,
+      1.0276812043324668,
+      -0.22696441512622356,
+      0.03899711555093832
+    ],
+    [
+      -1.3654634466408615,
+      -0.005214313514161516,
+      -0.058255836290463894,
+      1.9378520367703111,
+      -0.5121955345593548,
+      -0.0629640202299543,
+      -0.7198840380676417,
+      -0.02811754833926625,
+      0.033692289699848055,
+      1.0884804942967568,
+      -0.30885135536313224,
+      0.0391630362908974
+    ],
+    [
+      -1.3789322974758011,
+      -0.0059293367165320025,
+      -0.05656561580173605,
+      1.8518687732077492,
+      -0.4127247878806521,
+      -0.06134780659044951,
+      -0.7158208634700006,
+      -0.028638927162144636,
+      0.0341159747440785,
+      1.1781174140347639,
+      -0.4025651533235727,
+      0.03982446668269858
+    ],
+    [
+      -1.3611122514587262,
+      -0.004856011718161796,
+      -0.054171491525140815,
+      1.7448562748370096,
+      -0.3235641797562578,
+      -0.058856214344468055,
+      -0.7268363082127118,
+      -0.02892978904867396,
+      0.03538641125250434,
+      1.2882152251103578,
+      -0.5016688346608744,
+      0.0409916044430912
+    ],
+    [
+      -1.3163504404404986,
+      -0.0024834599613644524,
+      -0.051318719212008465,
+      1.6241838287690331,
+      -0.24771611645385824,
+      -0.055839895117440454,
+      -0.751451713572156,
+      -0.028976187341085615,
+      0.03748575977868996,
+      1.4106943620877708,
+      -0.599560896612158,
+      0.042668300435046706
+    ],
+    [
+      -1.2507047886064984,
+      0.0006196898908030786,
+      -0.04819320680109211,
+      1.4968235735320004,
+      -0.18607463420926523,
+      -0.052650547817178074,
+      -0.7889708625583178,
+      -0.028680819111946455,
+      0.04040122273816167,
+      1.538238484415059,
+      -0.6896183781825639,
+      0.044840635641474655
+    ],
+    [
+      -1.1706717427161009,
+      0.003966930852278543,
+      -0.04495467733042172,
+      1.3694953536492676,
+      -0.13884835079877006,
+      -0.04957402677811118,
+      -0.839394439467018,
+      -0.02785695100622834,
+      0.04409709437025757,
+      1.6640530228624728,
+      -0.7650396371518882,
+      0.04745907377040557
+    ]
+  ],
+  "leg_reference_fit": {
+    "max_position_error_m": 1.7364704265309942e-10,
+    "max_angle_error_rad": 2.4405106751758413e-09,
+    "closure_error_rad": 1.9878975132670007e-09
+  }
+}

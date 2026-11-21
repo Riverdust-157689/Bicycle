@@ -1,0 +1,32 @@
+{
+  "experiment": "B",
+  "seed": 42,
+  "num_envs": 128,
+  "episode_seconds": 20.0,
+  "initial_speed_mps": 2.0,
+  "initial_roll_rad": 0.02,
+  "control_decimation": 10,
+  "arm_offset_limit_rad": 0.5,
+  "arm_target_rate_rad_s": 4.0,
+  "steering_reference_limit_rad": 0.35,
+  "controller_roll_gain": 3.0,
+  "controller_roll_rate_gain": 0.7,
+  "crank_speed_rad_s": 3.7037037037,
+  "leg_velocity_feedforward": true,
+  "crank_servo_kv": 2.0,
+  "max_crank_torque_Nm": 8.0,
+  "fall_angle_rad": 0.65,
+  "nconmax": 128,
+  "njmax": 1024,
+  "hidden_dims": [
+    128,
+    128
+  ],
+  "learning_rate": 0.0003,
+  "ppo_rollouts": 64,
+  "ppo_raw_gaussian": true,
+  "sac_replay_transitions": 262144,
+  "sac_batch_size": 1024,
+  "sac_learning_starts_transitions": 8192,
+  "tire_collision_model": "ellipsoid"
+}

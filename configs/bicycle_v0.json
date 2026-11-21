@@ -83,7 +83,9 @@
   },
   "transmission": {
     "rear_wheel_revolutions_per_crank_revolution": 2.0,
-    "model": "ideal_bilateral_joint_coupling_no_freewheel",
+    "model": "one_way_viscous_freewheel",
+    "freewheel_damping_Nm_s_per_rad": 0.5,
+    "freewheel_max_rear_torque_Nm": 6.0,
     "powered_rear_wheel_in_riding_mode": false
   },
   "simulation_initial": {

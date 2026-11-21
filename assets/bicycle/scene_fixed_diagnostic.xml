@@ -84,9 +84,15 @@
     <exclude body1="bike_frame" body2="crank" />
     <exclude body1="steering" body2="front_wheel" />
   </contact>
-  <equality>
-    <joint name="chain_coupling" joint1="rear_wheel_spin" joint2="crank_spin" polycoef="0 2 0 0 0" />
-  </equality>
+  <tendon>
+    <fixed name="chain_slip">
+      <joint joint="crank_spin" coef="2.0" />
+      <joint joint="rear_wheel_spin" coef="-1" />
+    </fixed>
+  </tendon>
+  <actuator>
+    <general name="freewheel" tendon="chain_slip" gainprm="0" biastype="affine" biasprm="0 0 -0.5" forcelimited="true" forcerange="-6 0" />
+  </actuator>
   <custom>
     <text name="bicycle_geometry" data="{&quot;wheel_radius&quot;: 0.27, &quot;wheel_half_width&quot;: 0.018, &quot;wheelbase&quot;: 0.9, &quot;rear_axle&quot;: [0, 0, 0.27], &quot;front_axle&quot;: [0.9, 0, 0.27], &quot;bottom_bracket&quot;: [0.4, 0, 0.34], &quot;crank_radius&quot;: 0.11, &quot;pedal_lateral_offset&quot;: 0.14, &quot;pedal_half_size&quot;: [0.07, 0.045, 0.012], &quot;saddle_top&quot;: [0.24, 0, 0.77], &quot;saddle_half_size&quot;: [0.1, 0.065, 0.025], &quot;grip_centers&quot;: [[0.69, 0.22, 1.02], [0.69, -0.22, 1.02]], &quot;grip_radius&quot;: 0.014, &quot;head_angle_from_horizontal_deg&quot;: 78.63606586476637, &quot;trail&quot;: 0.04, &quot;steer_limit_rad&quot;: 0.35, &quot;crank_arm_lateral_offset&quot;: 0.075, &quot;pedal_spindle_length&quot;: 0.11, &quot;head_tube_lower_height&quot;: 0.6, &quot;head_tube_upper_height&quot;: 0.88, &quot;stem_clamp_height&quot;: 1.02, &quot;grip_length&quot;: 0.14, &quot;handlebar_sweep_back&quot;: 0.045, &quot;handlebar_mount_mode&quot;: &quot;direct&quot;, &quot;tire_profile&quot;: {&quot;type&quot;: &quot;rounded_convex&quot;, &quot;circumferential_samples&quot;: 192, &quot;crown_samples&quot;: 24}}" />
   </custom>

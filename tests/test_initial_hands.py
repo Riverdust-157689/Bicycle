@@ -43,7 +43,10 @@ def test_hand_acceptance_detects_downward_penetration():
 
 def test_mounted_position_servos_start_at_pose_reference():
     model, data = mounted()
-    expected = data.qpos[model.jnt_qposadr[model.actuator_trnid[:, 0]]]
     import numpy as np
 
-    np.testing.assert_allclose(data.ctrl, expected, atol=1e-8)
+    joint_actuators = model.actuator_trntype == mujoco.mjtTrn.mjTRN_JOINT
+    expected = data.qpos[model.jnt_qposadr[model.actuator_trnid[joint_actuators, 0]]]
+
+    np.testing.assert_allclose(data.ctrl[joint_actuators], expected, atol=1e-8)
+    assert data.ctrl[model.actuator("freewheel").id] == 0
